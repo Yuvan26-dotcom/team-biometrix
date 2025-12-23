@@ -1,0 +1,49 @@
+/* Full Width Section Styles */
+.full-width-section {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.full-width-section .highlight-card {
+    max-width: 1000px; /* Wider card for full width sections */
+    margin: 0 auto;
+    text-align: left;
+}
+
+/* Project Item Styles */
+.project-items {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.project-item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.project-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.project-item h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.project-domain {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.project-item p {
+    color: var(--text-light);
+    line-height: 1.6;
+}
