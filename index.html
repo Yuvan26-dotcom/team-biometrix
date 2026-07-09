@@ -14,7 +14,7 @@
 
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="#" class="logo">Biometrix_25</a>
+            <a href="#" class="logo">Biometrix</a>
             <ul class="nav-links">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
@@ -63,6 +63,12 @@
                         <p>An automated attendance system using face recognition to ensure accurate, contactless, and efficient attendance tracking.</p>
                     </div>
 
+                    <div class="project-item">
+                        <h3>CreditVision AI – AI-Powered Credit Assessment & Risk Analytics Platform</h3>
+                        <span class="project-domain">Domain: AI · FINTECH · MACHINE LEARNING</span>
+                        <p>An intelligent credit assessment platform that leverages machine learning to evaluate creditworthiness, predict default risk, detect fraudulent applications, and provide explainable AI insights for smarter and faster lending decisions.</p>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -70,10 +76,48 @@
         <!-- Achievements Section -->
         <section class="full-width-section" id="achievements">
             <h2>Our Achievements</h2>
-            <div class="highlight-card">
-                <img src="images/groupbest.jpeg" alt="Achievement Image" class="highlight-img">
-                <h3>Smart India Hackathon 2025</h3>
-                <p class="highlight-status">Runners Up</p>
+
+            <div class="achievement-hero-card">
+                <div class="achievement-image-wrapper">
+                    <img src="images/groupbest.jpeg" alt="SIH Grand Finale Certificate">
+                </div>
+                <div class="achievement-hero-content">
+                    <span class="achievement-badge">🏆 National Grand Finale</span>
+                    <h3>Smart India Hackathon (SIH) 2025 – Grand Finalists</h3>
+                    <p class="achievement-subtitle">National-Level Innovation Competition</p>
+                    <p class="achievement-description">Team BioMetrix successfully represented Sri Venkateswara College of Engineering at the Smart India Hackathon (SIH) 2025 Grand Finale, India's largest innovation competition organized by the Ministry of Education. The team developed an AI-Enabled Agriculture Value Chain Platform to address real-world agricultural challenges and competed among the nation's top engineering teams.</p>
+                </div>
+            </div>
+
+            <div class="achievement-list-card">
+                <div class="achievement-summary-card">
+                    <span class="achievement-icon">📄</span>
+                    <div class="achievement-summary-text">
+                        <h3>Students' Research Day 2026 – Research Paper Presentation</h3>
+                        <p>Presented and published the research paper titled "Digital Platform for Oilseed Farmers to Hedge Price Volatility", showcasing AI-driven innovation in agriculture, financial risk management, and digital transformation.</p>
+                    </div>
+                </div>
+                <div class="achievement-summary-card">
+                    <span class="achievement-icon">🥈</span>
+                    <div class="achievement-summary-text">
+                        <h3>VIDYUTRENZ 2026 – Technical Event Winners</h3>
+                        <p>Secured Second Prize in the Hypothesis Hub technical event conducted by the Department of Electronics and Communication Engineering, Chennai Institute of Technology.</p>
+                    </div>
+                </div>
+                <div class="achievement-summary-card">
+                    <span class="achievement-icon">📚</span>
+                    <div class="achievement-summary-text">
+                        <h3>Research Paper Publication</h3>
+                        <p>Successfully published the research paper "Digital Platform for Oilseed Farmers to Hedge Price Volatility", highlighting innovative AI-based solutions for oilseed price prediction and farmer risk mitigation.</p>
+                    </div>
+                </div>
+                <div class="achievement-summary-card">
+                    <span class="achievement-icon">🚀</span>
+                    <div class="achievement-summary-text">
+                        <h3>TN-IMPACT Hackathon 2026</h3>
+                        <p>Participated in the Tamil Nadu Industry Modernization, Problem-solving and Advanced Creative Technology (TN-IMPACT) Hackathon, developing innovative solutions for real-world industrial challenges.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -102,7 +146,7 @@
                 <!-- Member 2 -->
                 <div class="team-card">
                     <div class="img-wrapper">
-                        <img src="images/yuvanrb.jpg" alt="RB Yuvan">
+                        <img src="images/Yuvan Final.jpg" alt="RB Yuvan">
                     </div>
                     <div class="member-info">
                         <h3>RB Yuvan</h3>
@@ -119,7 +163,7 @@
                 <!-- Member 3 -->
                 <div class="team-card">
                     <div class="img-wrapper">
-                        <img src="images/subi.png" alt="Ramsubeesha RS">
+                        <img src="images/Subeesha Final.jpg" alt="Ramsubeesha RS">
                     </div>
                     <div class="member-info">
                         <h3>Ramsubeesha RS</h3>
@@ -193,5 +237,111 @@
         <p>&copy; 2025 Biometrix. All rights reserved.</p>
     </footer>
 
+    <div class="scroll-progress" aria-hidden="true"></div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-follower" aria-hidden="true"></div>
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+
+    <script>
+        const navbar = document.querySelector('.navbar');
+        const progressBar = document.querySelector('.scroll-progress');
+        const backToTop = document.querySelector('.back-to-top');
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section[id]');
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+        const follower = { x: pointer.x, y: pointer.y };
+        let ticking = false;
+
+        const updateCursor = () => {
+            cursorDot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0)`;
+            follower.x += (pointer.x - follower.x) * 0.16;
+            follower.y += (pointer.y - follower.y) * 0.16;
+            cursorFollower.style.transform = `translate3d(${follower.x}px, ${follower.y}px, 0)`;
+            ticking = false;
+        };
+
+        const rafCursor = () => {
+            if (!ticking) {
+                requestAnimationFrame(updateCursor);
+                ticking = true;
+            }
+        };
+
+        document.addEventListener('pointermove', event => {
+            pointer.x = event.clientX;
+            pointer.y = event.clientY;
+            rafCursor();
+        });
+
+        document.addEventListener('pointerenter', () => {
+            cursorDot.style.opacity = '1';
+            cursorFollower.style.opacity = '1';
+        });
+
+        const interactiveElements = 'a, button, .project-item, .team-card, .social-links a';
+        document.querySelectorAll(interactiveElements).forEach(el => {
+            el.addEventListener('pointerenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('pointerleave', () => document.body.classList.remove('cursor-hover'));
+        });
+
+        const setActiveLink = () => {
+            const offset = window.scrollY + 160;
+            sections.forEach(section => {
+                const top = section.offsetTop;
+                const height = section.offsetHeight;
+                const id = section.getAttribute('id');
+                const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+                if (!link) return;
+                if (offset >= top && offset < top + height) {
+                    navLinks.forEach(item => item.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        };
+
+        const updateScroll = () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            progressBar.style.width = `${progress}%`;
+            navbar.classList.toggle('shrink', scrollTop > 60);
+            backToTop.classList.toggle('visible', scrollTop > 400);
+            setActiveLink();
+        };
+
+        window.addEventListener('scroll', updateScroll, { passive: true });
+        updateScroll();
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        const tiltTargets = document.querySelectorAll('.project-item, .team-card, .achievement-summary-card');
+        tiltTargets.forEach(card => {
+            card.addEventListener('pointermove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                card.style.transform = `perspective(900px) rotateX(${(-y / rect.height) * 7}deg) rotateY(${(x / rect.width) * 7}deg) translateZ(4px)`;
+            });
+            card.addEventListener('pointerleave', () => {
+                card.style.transform = '';
+            });
+        });
+
+        const revealSections = document.querySelectorAll('section, .project-item, .team-card, .achievement-summary-card');
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        revealSections.forEach(section => revealObserver.observe(section));
+    </script>
 </body>
 </html>
