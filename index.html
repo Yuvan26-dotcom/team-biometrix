@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="css/projects.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -26,8 +26,15 @@
 
     <header class="main-header" id="home">
         <div class="container">
-            <h1>BIOMETRIX</h1>
-            <p>A multidisciplinary team creating intelligent, data-driven solutions for real-world challenges.</p>
+            <div class="hero-copy">
+                <span class="hero-kicker">SIH 2025 GRAND FINALE</span>
+                <h1>BIOMETRIX</h1>
+                <p>AI-powered price forecasting and market linkages that help farmers sell smarter — built for the Smart India Hackathon 2025 Grand Finale.</p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">View the Platform</a>
+                    <a href="#team" class="btn btn-ghost">Meet the Team</a>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -36,13 +43,16 @@
         <!-- Projects Section -->
         <section class="full-width-section" id="projects">
             <h2>Our Projects</h2>
+            <p class="section-lead">Our SIH 2025 platform includes commodity price forecasting, seller decision support, and a farmer-buyer marketplace to deliver insight-driven pricing and transparent connections.</p>
             <div class="highlight-card project-list-card">
                 <div class="project-items">
                     
                     <div class="project-item">
-                        <h3>AI-Enabled Agriculture Value Chain Platform (SIH Grand Finale)</h3>
-                        <span class="project-domain">Domain: AI · Agriculture · Supply Chain</span>
-                        <p>An end-to-end digital platform that uses AI-driven insights to support farmers, FPOs, and buyers through price forecasting, decision support, and transparent market linkages.</p>
+                        <a href="https://github.com/Yuvan26-dotcom/AI-Enabled-Agriculture-Value-Chain-Platform" target="_blank" rel="noopener noreferrer" class="project-link">
+                            <h3>AI-Enabled Agriculture Value Chain Platform (SIH Grand Finale)</h3>
+                            <span class="project-domain">Domain: AI · Agriculture · Supply Chain</span>
+                            <p>An end-to-end digital platform that uses AI-driven insights to support farmers, FPOs, and buyers through price forecasting, decision support, and transparent market linkages.</p>
+                        </a>
                     </div>
 
                     <div class="project-item">
@@ -64,9 +74,11 @@
                     </div>
 
                     <div class="project-item">
-                        <h3>CreditVision AI – AI-Powered Credit Assessment & Risk Analytics Platform</h3>
-                        <span class="project-domain">Domain: AI · FINTECH · MACHINE LEARNING</span>
-                        <p>An intelligent credit assessment platform that leverages machine learning to evaluate creditworthiness, predict default risk, detect fraudulent applications, and provide explainable AI insights for smarter and faster lending decisions.</p>
+                        <a href="https://github.com/Yuvan26-dotcom/AltcredAi-biometrix-26" target="_blank" rel="noopener noreferrer" class="project-link">
+                            <h3>CreditVision AI – AI-Powered Credit Assessment & Risk Analytics Platform</h3>
+                            <span class="project-domain">Domain: AI · FINTECH · MACHINE LEARNING</span>
+                            <p>An intelligent credit assessment platform that leverages machine learning to evaluate creditworthiness, predict default risk, detect fraudulent applications, and provide explainable AI insights for smarter and faster lending decisions.</p>
+                        </a>
                     </div>
 
                 </div>
@@ -144,12 +156,18 @@
                 </div>
 
                 <!-- Member 2 -->
-                <div class="team-card">
+                <div class="team-card clickable-card">
                     <div class="img-wrapper">
                         <img src="images/Yuvan Final.jpg" alt="RB Yuvan">
                     </div>
                     <div class="member-info">
-                        <h3>RB Yuvan</h3>
+                        <div class="member-header">
+                            <h3>RB Yuvan</h3>
+                            <a href="https://yuvan26-dotcom.github.io/Yuvan_Portfolio/" target="_blank" rel="noopener noreferrer" class="card-link" aria-label="View Yuvan portfolio">
+                                <span>Portfolio</span>
+                                <i class="fas fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
                         <span class="role">Full-Stack & Dashboard Developer</span>
                         <p>Builds interactive web dashboards, integrates APIs, and transforms raw data into clear, actionable insights through clean UI and logic.</p>
                         <div class="social-links">
@@ -252,32 +270,41 @@
         const cursorFollower = document.querySelector('.cursor-follower');
         const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
         const follower = { x: pointer.x, y: pointer.y };
-        let ticking = false;
+        let isAnimating = false;
 
         const updateCursor = () => {
-            cursorDot.style.transform = `translate3d(${pointer.x}px, ${pointer.y}px, 0)`;
+            cursorDot.style.left = `${pointer.x}px`;
+            cursorDot.style.top = `${pointer.y}px`;
             follower.x += (pointer.x - follower.x) * 0.16;
             follower.y += (pointer.y - follower.y) * 0.16;
-            cursorFollower.style.transform = `translate3d(${follower.x}px, ${follower.y}px, 0)`;
-            ticking = false;
-        };
+            cursorFollower.style.left = `${follower.x}px`;
+            cursorFollower.style.top = `${follower.y}px`;
 
-        const rafCursor = () => {
-            if (!ticking) {
+            const distance = Math.hypot(pointer.x - follower.x, pointer.y - follower.y);
+            if (distance > 0.5) {
                 requestAnimationFrame(updateCursor);
-                ticking = true;
+            } else {
+                isAnimating = false;
             }
         };
 
         document.addEventListener('pointermove', event => {
             pointer.x = event.clientX;
             pointer.y = event.clientY;
-            rafCursor();
+            if (!isAnimating) {
+                isAnimating = true;
+                requestAnimationFrame(updateCursor);
+            }
         });
 
         document.addEventListener('pointerenter', () => {
             cursorDot.style.opacity = '1';
             cursorFollower.style.opacity = '1';
+        });
+
+        document.addEventListener('pointerleave', () => {
+            cursorDot.style.opacity = '0';
+            cursorFollower.style.opacity = '0';
         });
 
         const interactiveElements = 'a, button, .project-item, .team-card, .social-links a';
